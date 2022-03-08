@@ -35,28 +35,21 @@ int main()
     }
     printf("\t\tOutput of an array with 10 elements\n");
     for(int i=0; i<5; i++){
-       printf("Function %d: %7f\n",i+1, (*aggregates[i])(data10elements, 5));
+       printf("Function %d: %10f\n",i+1, (*aggregates[i])(data10elements, 5));
     }
 
     printf("\n\n----------------------------------------------------------\n");
     printf("\t\tOutput for the Question 5 \n");
     printf("----------------------------------------------------------\n");
-    typedef float (*funcptr[5])(float data[], int size);
-
-
+    typedef float (*funcptr)(float[], int) ;
+    funcptr fmin = &min;
+    funcptr fmax = &max;
+    funcptr fsum = &sum;
+    funcptr favg = &avg;
+    funcptr fpseudo_avg = &pseudo_avg;
+    float (*aggregates_2[])(float[], int) = {fmin, fmax, fsum, favg, fpseudo_avg};
     const char * funcnames[] = {"FMIN", "FMAX", "FSUM", "FAVG", "FPSEUDO_AVG"};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    for(int i=0; i<5; i++){
+        printf("%s: %10d\n", funcnames[i], aggregates_2[i]);
+    }
 }
